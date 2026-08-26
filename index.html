@@ -1,183 +1,251 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex,nofollow">
-<title>Vale Gardeners &mdash; Digital Presence Audit</title>
+<title>Vale Gardeners Hiring Audit</title>
 <style>
-  :root{
-    --bg:#0d1117; --panel:#161b22; --panel2:#1c2330; --ink:#e6edf3; --mut:#9aa7b4;
-    --line:#2a3340; --accent:#2f81f7; --good:#3fb950; --ok:#bb8009; --warn:#d29922;
-    --bad:#f85149; --gradF:#f85149; --gradD:#e8702a; --gradC:#d29922; --gradB:#3fb950; --gradA:#2ea043;
-  }
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
-    background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
-  .eyebrow{letter-spacing:.18em;text-transform:uppercase;font-size:12px;color:var(--mut);font-weight:600}
-
-  header{padding:46px 0 28px;border-bottom:1px solid var(--line);
-    background:radial-gradient(1200px 400px at 70% -10%,rgba(47,129,247,.18),transparent)}
-  h1{font-size:30px;font-weight:800;margin:10px 0 6px;letter-spacing:-.01em}
-  .sub{color:var(--mut);font-size:15px}
-
-  .hero{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:center;margin:34px 0 8px}
-  @media(max-width:760px){.hero{grid-template-columns:1fr}}
-  .gradecard{background:linear-gradient(160deg,#2a1410,#1c2330);border:1px solid var(--line);
-    border-radius:18px;padding:26px;text-align:center;position:relative;overflow:hidden}
-  .gradecard:before{content:"";position:absolute;inset:0;
-    background:radial-gradient(300px 160px at 50% 0,rgba(248,81,73,.22),transparent)}
-  .bigletter{font-size:96px;font-weight:900;line-height:1;color:var(--gradD);position:relative;
-    text-shadow:0 0 40px rgba(232,112,42,.45)}
-  .score100{font-size:18px;color:var(--mut);margin-top:6px;position:relative}
-  .heroread h2{font-size:21px;font-weight:800;margin-bottom:10px}
-  .heroread p{color:var(--mut);font-size:15.5px}
-  .heroread .tag{display:inline-block;margin-top:14px;padding:6px 12px;border:1px solid var(--line);
-    border-radius:999px;font-size:13px;color:var(--ink);background:var(--panel)}
-
-  section{padding:34px 0;border-bottom:1px solid var(--line)}
-  .h{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.14em;font-weight:700;margin-bottom:18px}
-
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  @media(max-width:760px){.grid{grid-template-columns:1fr}}
-  .row{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
-    display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
-  .rname{font-weight:600;font-size:15px}
-  .bar{height:7px;background:#0b0f15;border-radius:99px;margin-top:9px;overflow:hidden}
-  .fill{height:100%;border-radius:99px}
-  .badge{font-weight:800;font-size:15px;min-width:46px;height:46px;border-radius:10px;
-    display:flex;align-items:center;justify-content:center;color:#0d1117}
-  .gF{background:var(--gradF)}.gD{background:var(--gradD)}.gC{background:var(--gradC)}
-  .gB{background:var(--gradB);color:#06210f}.gA{background:var(--gradA);color:#06210f}
-  .sc{font-size:12px;color:var(--mut);margin-top:3px}
-
-  .opp{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-  @media(max-width:760px){.opp{grid-template-columns:1fr}}
-  .ocard{background:linear-gradient(160deg,#0f2417,#161b22);border:1px solid #1f6f3a;border-radius:14px;padding:20px;text-align:center}
-  .ocard .lab{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--mut)}
-  .ocard .big{font-size:30px;font-weight:900;color:var(--good);margin:8px 0 2px}
-  .ocard .small{font-size:13px;color:var(--mut)}
-  .oppnote{color:var(--mut);font-size:14px;margin-top:14px}
-
-  .arrow{display:flex;align-items:center;justify-content:center;gap:18px;margin:6px 0 2px;flex-wrap:wrap}
-  .pill{font-size:60px;font-weight:900;line-height:1}
-  .pill.from{color:var(--gradD)} .pill.to{color:var(--gradA)}
-  .pilllab{font-size:12px;color:var(--mut);text-align:center;text-transform:uppercase;letter-spacing:.1em}
-  .ar{font-size:34px;color:var(--mut)}
-
-  ul.road{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px}
-  @media(max-width:760px){ul.road{grid-template-columns:1fr}}
-  ul.road li{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);
-    border-radius:8px;padding:11px 14px;font-size:14.5px}
-  .road2 li{border-left-color:var(--good)}
-
-  .cta{text-align:center;padding:40px 0 56px}
-  .cta h2{font-size:22px;font-weight:800;margin-bottom:8px}
-  .cta p{color:var(--mut);font-size:15px}
-  footer{color:var(--mut);font-size:12.5px;text-align:center;padding:22px 0 40px}
+:root{--bg:#0d1117;--panel:#161b22;--ink:#e6edf3;--mut:#9aa7b4;--line:#2a3340;--accent:#2f81f7;
+  --good:#3fb950;--bad:#f85149;--gradF:#f85149;--gradD:#e8702a;--gradC:#d29922;--gradB:#3fb950;--gradA:#2ea043;}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+.eyebrow{letter-spacing:.18em;text-transform:uppercase;font-size:12px;color:var(--mut);font-weight:600}
+header{padding:46px 0 28px;border-bottom:1px solid var(--line);background:radial-gradient(1200px 400px at 70% -10%,rgba(47,129,247,.18),transparent)}
+h1{font-size:30px;font-weight:800;margin:10px 0 6px;letter-spacing:-.01em}
+.sub{color:var(--mut);font-size:15px}
+.hero{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:center;margin:34px 0 8px}
+@media(max-width:760px){.hero{grid-template-columns:1fr}}
+.gradecard{border:1px solid var(--line);border-radius:18px;padding:26px;text-align:center;position:relative;overflow:hidden}
+.gc-F{background:linear-gradient(160deg,#2a1410,#1c2330)}.gc-D{background:linear-gradient(160deg,#2a1c10,#1c2330)}
+.gc-C{background:linear-gradient(160deg,#2a2410,#1c2330)}.gc-B{background:linear-gradient(160deg,#102a1a,#1c2330)}
+.bigletter{font-size:96px;font-weight:900;line-height:1;position:relative}
+.bl-F{color:var(--gradF);text-shadow:0 0 40px rgba(248,81,73,.45)}
+.bl-D{color:var(--gradD);text-shadow:0 0 40px rgba(232,112,42,.45)}
+.bl-C{color:var(--gradC);text-shadow:0 0 40px rgba(210,153,34,.45)}
+.score100{font-size:18px;color:var(--mut);margin-top:6px;position:relative}
+.heroread h2{font-size:21px;font-weight:800;margin-bottom:10px}
+.heroread p{color:var(--mut);font-size:15.5px}
+.heroread .tag{display:inline-block;margin-top:14px;padding:6px 12px;border:1px solid var(--line);border-radius:999px;font-size:13px;color:var(--ink);background:var(--panel)}
+section{padding:34px 0;border-bottom:1px solid var(--line)}
+.h{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.14em;font-weight:700;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}}
+.row{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+.rname{font-weight:600;font-size:15px}
+.badge{font-weight:800;font-size:15px;min-width:46px;height:46px;border-radius:10px;display:flex;align-items:center;justify-content:center;color:#0d1117}
+.gF{background:var(--gradF)}.gD{background:var(--gradD)}.gC{background:var(--gradC)}.gB{background:var(--gradB);color:#06210f}.gA{background:var(--gradA);color:#06210f}
+.sc{font-size:12px;color:var(--mut);margin-top:3px}
+.flag{background:linear-gradient(160deg,#2a1410,#161b22);border:1px solid #6f2a1f;border-radius:14px;padding:20px 22px;margin-bottom:14px}
+.flag .lab{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--bad);font-weight:700;margin-bottom:8px}
+.win{background:linear-gradient(160deg,#0f2417,#161b22);border:1px solid #1f6f3a;border-radius:14px;padding:20px 22px;margin-bottom:14px}
+.win .lab{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--good);font-weight:700;margin-bottom:8px}
+.warn{background:linear-gradient(160deg,#2a2410,#161b22);border:1px solid #6f5a1f;border-radius:14px;padding:20px 22px;margin-bottom:14px}
+.warn .lab{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--gradC);font-weight:700;margin-bottom:8px}
+.flag p,.win p,.warn p{color:var(--mut);font-size:14.5px;margin-bottom:9px}
+.flag p:last-child,.win p:last-child,.warn p:last-child{margin-bottom:0}
+.flag b,.win b,.warn b{color:var(--ink)}
+.flag ul,.win ul,.warn ul{margin:0 0 9px 20px;color:var(--mut);font-size:14.5px}
+.flag li,.win li,.warn li{margin-bottom:6px}
+.code{background:#0b0f15;border:1px solid var(--line);border-radius:8px;padding:14px 16px;margin:12px 0;font-family:ui-monospace,SFMono-Regular,Consolas,monospace;font-size:12.5px;line-height:1.85;color:var(--mut);overflow-x:auto;white-space:pre}
+.code .ph{color:#ff9d94;font-weight:700}.code .ok{color:#84e0a8;font-weight:700}
+.opp{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+@media(max-width:760px){.opp{grid-template-columns:1fr}}
+.ocard{background:linear-gradient(160deg,#0f2417,#161b22);border:1px solid #1f6f3a;border-radius:14px;padding:20px;text-align:center}
+.ocard .lab{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--mut)}
+.ocard .big{font-size:30px;font-weight:900;color:var(--good);margin:8px 0 2px}
+.ocard .small{font-size:13px;color:var(--mut)}
+.oppnote{color:var(--mut);font-size:14px;margin-top:14px}.oppnote b{color:var(--ink)}
+.arrow{display:flex;align-items:center;justify-content:center;gap:18px;margin:6px 0 2px;flex-wrap:wrap}
+.ar{font-size:34px;color:var(--mut)}
+ul.road{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:760px){ul.road{grid-template-columns:1fr}}
+ul.road li{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);border-radius:8px;padding:11px 14px;font-size:14.5px}
+.road2 li{border-left-color:var(--good)}
+.cta{text-align:center;padding:40px 0 56px}
+.cta h2{font-size:22px;font-weight:800;margin-bottom:8px}
+.cta p{color:var(--mut);font-size:15px}
+footer{color:var(--mut);font-size:12.5px;text-align:center;padding:22px 0 40px;line-height:1.7}
 </style>
-</head>
-<body>
+
 <header>
   <div class="wrap">
-    <div class="eyebrow">Digital Presence Audit</div>
-    <h1>Vale Gardeners</h1>
-    <div class="sub">Barry, Vale of Glamorgan, South Wales &nbsp;&middot;&nbsp; Website, Local SEO, Enquiry Capture, Reputation &amp; Recruitment Readiness</div>
+    <div class="eyebrow">Hiring &amp; Website Audit</div>
+    <h1>Vale Gardeners &mdash; Barry &amp; the Vale of Glamorgan</h1>
+    <div class="sub">Prepared for Ben Jones &middot; 27 August 2026 &middot; AG1 Consulting</div>
   </div>
 </header>
 
 <div class="wrap">
 
   <div class="hero">
-    <div class="gradecard">
-      <div class="eyebrow" style="position:relative">Overall Grade</div>
-      <div class="bigletter" style="color:var(--gradD)">D+</div>
-      <div class="score100">51 / 100</div>
+    <div class="gradecard gc-F">
+      <div class="bigletter bl-F">0</div>
+      <div class="score100">places on your site where<br>somebody could apply for a job</div>
     </div>
     <div class="heroread">
-      <h2>Your marketing works. Your hiring is invisible.</h2>
-      <p>Forty-four Google reviews rated Excellent, over a decade of work, and a full order book. The business is not short of customers, it is short of people. And there is nowhere on this website for a single one of them to apply. No careers page, no vacancies, no form. You are hiring in silence while your competitors advertise.</p>
-      <span class="tag">Strong reputation • Zero recruitment presence</span>
+      <h2>You do not have a marketing problem. You have a hiring problem &mdash; and your website does not mention hiring anywhere.</h2>
+      <p>You told our team you already have a marketing team keeping you busy, and that the thing you
+      cannot solve is <b>finding qualified workers.</b> So we audited your site for that instead of for
+      leads. <b>There is no careers page, no vacancy, no application form and no mention of joining the
+      team on any page.</b> A good gardener who admires your work has nowhere to put their hand up.</p>
+      <span class="tag">Barry &middot; over a decade trading &middot; 16 towns covered</span>
     </div>
   </div>
 
   <section>
-    <div class="h">The Scorecard &mdash; 12 Categories</div>
-    <div class="grid">
-
-      <div class="row"><div><div class="rname">Brand &amp; Domain</div><div class="bar"><div class="fill" style="width:78%;background:var(--gradB)"></div></div><div class="sc">Clean domain, consistent naming, clear local identity.</div></div><div class="badge gB">B</div></div>
-
-      <div class="row"><div><div class="rname">Website Design &amp; UX</div><div class="bar"><div class="fill" style="width:58%;background:var(--gradC)"></div></div><div class="sc">Tidy layout, but the same call-to-action repeats 24+ times.</div></div><div class="badge gC">C</div></div>
-
-      <div class="row"><div><div class="rname">Mobile Experience</div><div class="bar"><div class="fill" style="width:72%;background:var(--gradB)"></div></div><div class="sc">Responsive, though the repetition makes a very long scroll.</div></div><div class="badge gB">B</div></div>
-
-      <div class="row"><div><div class="rname">Site Speed &amp; Technical</div><div class="bar"><div class="fill" style="width:60%;background:var(--gradC)"></div></div><div class="sc">Repeated content bloats the page. No optimisation evident.</div></div><div class="badge gC">C</div></div>
-
-      <div class="row"><div><div class="rname">On-Page SEO</div><div class="bar"><div class="fill" style="width:45%;background:var(--gradD)"></div></div><div class="sc">Two dozen identical blocks reads as manipulation, not depth.</div></div><div class="badge gD">D</div></div>
-
-      <div class="row"><div><div class="rname">Local SEO &amp; Google Profile</div><div class="bar"><div class="fill" style="width:80%;background:var(--gradB)"></div></div><div class="sc">44 reviews rated Excellent. The strongest asset you own.</div></div><div class="badge gB">B</div></div>
-
-      <div class="row"><div><div class="rname">Enquiry Capture</div><div class="bar"><div class="fill" style="width:42%;background:var(--gradD)"></div></div><div class="sc">No form anywhere. Phone, text or WhatsApp only.</div></div><div class="badge gD">D</div></div>
-
-      <div class="row"><div><div class="rname">Speed to Lead &amp; Follow-Up</div><div class="bar"><div class="fill" style="width:40%;background:var(--gradD)"></div></div><div class="sc">No visible automation. A missed call is a lost job.</div></div><div class="badge gD">D</div></div>
-
-      <div class="row"><div><div class="rname">Content &amp; Authority</div><div class="bar"><div class="fill" style="width:25%;background:var(--gradF)"></div></div><div class="sc">No blog, guides or seasonal content earning organic reach.</div></div><div class="badge gF">F</div></div>
-
-      <div class="row"><div><div class="rname">Reviews &amp; Reputation</div><div class="bar"><div class="fill" style="width:88%;background:var(--gradA)"></div></div><div class="sc">44 reviews, recent, detailed and displayed. Genuinely strong.</div></div><div class="badge gA">A</div></div>
-
-      <div class="row"><div><div class="rname">Social Presence</div><div class="bar"><div class="fill" style="width:15%;background:var(--gradF)"></div></div><div class="sc">No social links anywhere on the site.</div></div><div class="badge gF">F</div></div>
-
-      <div class="row"><div><div class="rname">Recruitment Presence</div><div class="bar"><div class="fill" style="width:5%;background:var(--gradF)"></div></div><div class="sc">No careers page. No vacancies. No way to apply.</div></div><div class="badge gF">F</div></div>
-
+    <div class="h">The Finding, Stated Plainly</div>
+    <div class="flag">
+      <div class="lab">We searched every page for the words a job-seeker would look for</div>
+      <div class="code">"Careers"                      <span class="ph">✗ nowhere on the site</span>
+"Jobs" / "Vacancies"           <span class="ph">✗ nowhere on the site</span>
+"Join our team"                <span class="ph">✗ nowhere on the site</span>
+"We're hiring"                 <span class="ph">✗ nowhere on the site</span>
+Application form               <span class="ph">✗ none exists</span>
+Pay, hours or benefits stated  <span class="ph">✗ nothing published</span></div>
+      <p>Your navigation reads Home, About Us, Grass Cutting, Garden Maintenance, Hedge Trimming,
+      Pressure Washing, Get A Quote. <b>Every route on your website is built to sell a job. None is
+      built to fill one.</b></p>
+      <p>That matters more for you than for most, because of who your best applicant is.
+      <b>The gardener you actually want is already working for somebody else.</b> He is not on Indeed
+      at nine in the morning. He is in a van. He hears your name, or sees your vehicle, or a customer
+      mentions you &mdash; and then he looks you up. <b>At that moment your site tells him you are not
+      hiring</b>, because it says nothing at all.</p>
     </div>
   </section>
 
   <section>
-    <div class="h">The Opportunity in Numbers — Capacity, Not Leads</div>
-    <div class="opp">
-      <div class="ocard"><div class="lab">Conservative</div><div class="big">+£1,200/wk</div><div class="small">One qualified gardener added to the crew</div></div>
-      <div class="ocard"><div class="lab">Moderate</div><div class="big">+£2,400/wk</div><div class="small">Two hires, working at current job rates</div></div>
-      <div class="ocard"><div class="lab">Strong</div><div class="big">+£3,600/wk</div><div class="small">Three hires — the ceiling lifts, not the demand</div></div>
+    <div class="h">Why The Usual Advice Has Not Worked</div>
+    <div class="warn">
+      <div class="lab">You told our team you have tried plenty of ways to find people</div>
+      <p>Almost every route a small firm tries first &mdash; Indeed, Facebook groups, a card in a shop
+      window, asking around &mdash; is fishing in the same pool: <b>people who are currently out of
+      work.</b> In a trade where the good ones are rarely unemployed for long, that pool is mostly
+      people other firms have already passed on.</p>
+      <div class="code">Job boards reach       <span class="ph">people actively unemployed</span>
+Your website reaches   <span class="ok">people already working, who like what they see</span>
+
+Which one has the gardener you want?</div>
+      <p><b>The second group never applies to an advert. They apply to a business.</b> And they only do
+      it when the business makes it easy, low-risk and quick &mdash; usually from a phone, in the
+      evening, without a CV to hand and without telling their current boss.</p>
+      <p>That is the gap. It is not that you have not tried. It is that <b>the channel that reaches the
+      person you want is the one channel you have not built.</b></p>
     </div>
-    <p class="oppnote">Illustrative only, based on roughly 20 jobs a week at about £60 average. Your real numbers will differ and we should confirm them on the call. This is revenue, not profit, and it is not a guarantee. The point is the shape: you already have the demand. Every week without the right people is capacity you cannot sell.</p>
+  </section>
+
+  <section>
+    <div class="h">What You Have Already Got, And It Is The Hard Part</div>
+    <div class="win">
+      <div class="lab">Most firms trying to hire have none of this</div>
+      <ul>
+        <li><b>44 reviews with an Excellent rating.</b> This is your single strongest recruiting asset and it is currently only being used to win customers. <b>Tradesmen read reviews about employers too.</b></li>
+        <li><b>Over a decade trading.</b> Stability is the first thing a man with a mortgage checks.</li>
+        <li><b>A real customer base across sixteen towns</b> &mdash; Barry, Penarth, Cowbridge, Llantwit Major, Dinas Powys and the rest. That is steady, local, year-round work rather than feast and famine.</li>
+        <li><b>Analytics already installed</b> (GA4 tag live on the site). Rare, and it means we can measure applications from day one.</li>
+        <li><b>A tap-to-call number that works</b> on mobile.</li>
+        <li><b>Customers who name you personally</b> &mdash; &ldquo;Ben and his amazing team&rdquo;, &ldquo;the boys&rdquo;. That is what a good employer looks like from outside.</li>
+      </ul>
+      <p><b>You are a business people would want to work for. You just have not told anybody that.</b></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="h">The Scorecard &mdash; Measured On Hiring, Not On Leads</div>
+    <div class="grid">
+      <div class="row"><div><div class="rname">Analytics installed</div><div class="sc">GA4 tag live. Applications could be measured from day one.</div></div><div class="badge gA">A&minus;</div></div>
+      <div class="row"><div><div class="rname">Reputation to recruit against</div><div class="sc">44 reviews, Excellent rating. Strong, and unused for hiring.</div></div><div class="badge gA">A&minus;</div></div>
+      <div class="row"><div><div class="rname">Tap-to-call number</div><div class="sc">07931 589370 as a working tel: link.</div></div><div class="badge gB">B+</div></div>
+      <div class="row"><div><div class="rname">Service pages</div><div class="sc">Separate pages per service, sixteen towns named.</div></div><div class="badge gB">B</div></div>
+      <div class="row"><div><div class="rname">Careers page</div><div class="sc">Does not exist. No route to apply from any page.</div></div><div class="badge gF">F</div></div>
+      <div class="row"><div><div class="rname">Application form</div><div class="sc">None. A willing applicant has no way to register interest.</div></div><div class="badge gF">F</div></div>
+      <div class="row"><div><div class="rname">Pay and hours published</div><div class="sc">Nothing stated. The first question every applicant has, unanswered.</div></div><div class="badge gF">F</div></div>
+      <div class="row"><div><div class="rname">What it is like to work there</div><div class="sc">No team photos, no staff story, no van, no kit, no day-in-the-life.</div></div><div class="badge gF">F</div></div>
+      <div class="row"><div><div class="rname">Applicant screening</div><div class="sc">Nothing to sort a qualified gardener from a time-waster before you meet.</div></div><div class="badge gF">F</div></div>
+      <div class="row"><div><div class="rname">Email address published</div><div class="sc">No email found on the site — phone only.</div></div><div class="badge gD">D</div></div>
+      <div class="row"><div><div class="rname">Accreditations shown</div><div class="sc">None published. Matters to applicants as well as customers.</div></div><div class="badge gD">D&minus;</div></div>
+      <div class="row"><div><div class="rname">Enquiry form for customers</div><div class="sc">One form field found on the homepage — a search box, not an enquiry form.</div></div><div class="badge gD">D</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="h">What A Hiring Page Has To Answer</div>
+    <div class="warn">
+      <div class="lab">In the order a working gardener asks them, at nine at night, on his phone</div>
+      <div class="code">What's the pay?                <span class="ph">not on your site</span>
+What are the hours?            <span class="ph">not on your site</span>
+Is it year-round or seasonal?  <span class="ph">not on your site</span>
+Do I need my own transport?    <span class="ph">not on your site</span>
+What kit do you provide?       <span class="ph">not on your site</span>
+Who would I be working with?   <span class="ph">not on your site</span>
+Will my boss find out?         <span class="ph">not on your site</span></div>
+      <p>Every one of those is a reason not to bother. <b>A man in secure work will not gamble an
+      evening on a phone call to find out the pay is worse than what he has.</b> Publish the answers
+      and you remove the risk that stops him.</p>
+      <p><b>And the last question is the one nobody thinks about.</b> Somebody currently employed will
+      not ring a number and give his name to a stranger. He will fill in a short form on his phone with
+      his thumb. That is why the form matters more than the phone number here &mdash; it is the exact
+      opposite of your customer side.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="h">The Thing Worth Checking Before Anything Else</div>
+    <div class="flag">
+      <div class="lab">One number in your brief we would like you to confirm</div>
+      <p>Our team recorded that you are doing <b>44 jobs a week</b>. Your website displays
+      <b>44 reviews</b>. That may be pure coincidence &mdash; but the numbers matching exactly is worth
+      thirty seconds of your time to correct, because <b>everything we would build depends on your real
+      job volume.</b></p>
+      <p>We have not guessed which is right and we have not built any figure on it. <b>Tell us the real
+      weekly number on the call.</b></p>
+    </div>
   </section>
 
   <section>
     <div class="h">Projected Grade After Build</div>
     <div class="arrow">
-      <div><div class="pill from" style="color:var(--gradD)">D+</div><div class="pilllab">Today &middot; 51/100</div></div>
+      <div class="gradecard gc-F" style="flex:1"><div class="bigletter bl-F">F</div><div class="score100">no hiring route today</div></div>
       <div class="ar">&rarr;</div>
-      <div><div class="pill to">A-</div><div class="pilllab">After build &middot; 88/100</div></div>
+      <div class="gradecard gc-B" style="flex:1"><div class="bigletter" style="color:#3fb950;text-shadow:0 0 40px rgba(63,185,80,.45)">A</div><div class="score100">a real applicant funnel</div></div>
     </div>
+    <p class="oppnote">Projected, not promised. It reflects the rows above being fixed, which is within
+    your control and ours. <b>It is not a projection of how many people will apply, and we do not
+    guarantee that you will fill a vacancy.</b></p>
   </section>
 
   <section>
-    <div class="h">Priority Roadmap &mdash; Fix First</div>
+    <div class="h">Fix First &mdash; This Week, No Spend</div>
     <ul class="road">
-      <li>Careers page with a real application form, not an email address</li>
-      <li>Recruitment ads aimed at local gardeners and landscapers</li>
-      <li>An enquiry form on the site, so the phone is not the only door</li>
-      <li>Strip the repeated call-to-action blocks before Google penalises them</li>
+      <li><b>Put a &ldquo;Join the team&rdquo; link in your main navigation.</b> Right now there is no route at all</li>
+      <li><b>Publish the pay, the hours and whether it is year-round.</b> The three questions that decide whether anyone bothers</li>
+      <li><b>Put your 44 reviews on the hiring page too</b> — a good employer is proved the same way a good gardener is</li>
+      <li><b>Photograph the team, the vans and the kit.</b> Applicants are buying a working day, not a job title</li>
     </ul>
-  </section>
-
-  <section>
-    <div class="h">Build Next &mdash; Compounding</div>
+    <div class="h" style="margin-top:24px">Build Next</div>
     <ul class="road road2">
-      <li>Automatic reply to applicants within minutes, not days</li>
-      <li>Google Business Profile posts and a photo cadence</li>
-      <li>Social presence that shows the work and attracts crew</li>
-      <li>Tracking, so you know which channel actually produces applicants</li>
+      <li><b>A short application form built for a thumb</b> — experience, transport, tickets, availability. No CV required</li>
+      <li><b>Screening built into the form</b> so a qualified gardener and a time-waster do not arrive looking identical</li>
+      <li><b>Applications tracked as conversions in your existing GA4</b>, so you know which route produces people</li>
+      <li><b>Then advertise the vacancy locally</b> — into a page that can actually take an application</li>
     </ul>
   </section>
 
   <div class="cta">
-    <h2>You do not need more leads. You need more hands.</h2>
-    <p>Same machine, pointed at a different problem.</p>
+    <h2>Ten years, 44 reviews, sixteen towns &mdash; and no way for a good gardener to say &ldquo;are you hiring?&rdquo;</h2>
+    <p>The reputation that wins you customers would win you staff too. It is pointed entirely at one
+    of those and not at all at the other.</p>
   </div>
 
-  <footer>Prepared by Andrei Givero &mdash; AG Consulting &nbsp;|&nbsp; andrei170.github.io/ag1</footer>
 </div>
-</body>
-</html>
+
+<footer>
+  Prepared by Andrei Givero &middot; AG1 Consulting &middot; 27 August 2026<br>
+  For Ben Jones of Vale Gardeners, Barry, Vale of Glamorgan. All findings were read from
+  valegardeners.co.uk and its served page source on 27 August 2026 and reflect that page on that date
+  only. <b>&ldquo;Not on the site&rdquo; means the term was not present in the pages we read &mdash; if
+  a careers page exists somewhere we did not reach, tell us and we will correct this.</b> Review count
+  and rating are as displayed on your own website via Trustindex and have not been independently
+  verified with the platform. Trading history, service list and towns covered are your own published
+  claims. Your existing marketing arrangement, your job volume and your difficulty recruiting are
+  <b>as stated to our team</b> and have not been independently verified &mdash; and we have flagged
+  above that the 44 figure needs confirming. <b>Nothing in this document promises or forecasts a number
+  of applicants, hires, leads or revenue, and recruitment outcomes depend on pay, conditions and the
+  local labour market, which are outside our control.</b> Grades are our own assessment against a
+  consistent framework and are not an industry-standard measure.
+</footer>
