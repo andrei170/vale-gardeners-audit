@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Vale Gardeners &mdash; Digital Presence Audit</title>
+<style>
+  :root{
+    --bg:#0d1117; --panel:#161b22; --panel2:#1c2330; --ink:#e6edf3; --mut:#9aa7b4;
+    --line:#2a3340; --accent:#2f81f7; --good:#3fb950; --ok:#bb8009; --warn:#d29922;
+    --bad:#f85149; --gradF:#f85149; --gradD:#e8702a; --gradC:#d29922; --gradB:#3fb950; --gradA:#2ea043;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;
+    background:var(--bg);color:var(--ink);line-height:1.5;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 22px}
+  .eyebrow{letter-spacing:.18em;text-transform:uppercase;font-size:12px;color:var(--mut);font-weight:600}
+
+  header{padding:46px 0 28px;border-bottom:1px solid var(--line);
+    background:radial-gradient(1200px 400px at 70% -10%,rgba(47,129,247,.18),transparent)}
+  h1{font-size:30px;font-weight:800;margin:10px 0 6px;letter-spacing:-.01em}
+  .sub{color:var(--mut);font-size:15px}
+
+  .hero{display:grid;grid-template-columns:300px 1fr;gap:26px;align-items:center;margin:34px 0 8px}
+  @media(max-width:760px){.hero{grid-template-columns:1fr}}
+  .gradecard{background:linear-gradient(160deg,#2a1410,#1c2330);border:1px solid var(--line);
+    border-radius:18px;padding:26px;text-align:center;position:relative;overflow:hidden}
+  .gradecard:before{content:"";position:absolute;inset:0;
+    background:radial-gradient(300px 160px at 50% 0,rgba(248,81,73,.22),transparent)}
+  .bigletter{font-size:96px;font-weight:900;line-height:1;color:var(--gradD);position:relative;
+    text-shadow:0 0 40px rgba(232,112,42,.45)}
+  .score100{font-size:18px;color:var(--mut);margin-top:6px;position:relative}
+  .heroread h2{font-size:21px;font-weight:800;margin-bottom:10px}
+  .heroread p{color:var(--mut);font-size:15.5px}
+  .heroread .tag{display:inline-block;margin-top:14px;padding:6px 12px;border:1px solid var(--line);
+    border-radius:999px;font-size:13px;color:var(--ink);background:var(--panel)}
+
+  section{padding:34px 0;border-bottom:1px solid var(--line)}
+  .h{font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.14em;font-weight:700;margin-bottom:18px}
+
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:760px){.grid{grid-template-columns:1fr}}
+  .row{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px 16px;
+    display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center}
+  .rname{font-weight:600;font-size:15px}
+  .bar{height:7px;background:#0b0f15;border-radius:99px;margin-top:9px;overflow:hidden}
+  .fill{height:100%;border-radius:99px}
+  .badge{font-weight:800;font-size:15px;min-width:46px;height:46px;border-radius:10px;
+    display:flex;align-items:center;justify-content:center;color:#0d1117}
+  .gF{background:var(--gradF)}.gD{background:var(--gradD)}.gC{background:var(--gradC)}
+  .gB{background:var(--gradB);color:#06210f}.gA{background:var(--gradA);color:#06210f}
+  .sc{font-size:12px;color:var(--mut);margin-top:3px}
+
+  .opp{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  @media(max-width:760px){.opp{grid-template-columns:1fr}}
+  .ocard{background:linear-gradient(160deg,#0f2417,#161b22);border:1px solid #1f6f3a;border-radius:14px;padding:20px;text-align:center}
+  .ocard .lab{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--mut)}
+  .ocard .big{font-size:30px;font-weight:900;color:var(--good);margin:8px 0 2px}
+  .ocard .small{font-size:13px;color:var(--mut)}
+  .oppnote{color:var(--mut);font-size:14px;margin-top:14px}
+
+  .arrow{display:flex;align-items:center;justify-content:center;gap:18px;margin:6px 0 2px;flex-wrap:wrap}
+  .pill{font-size:60px;font-weight:900;line-height:1}
+  .pill.from{color:var(--gradD)} .pill.to{color:var(--gradA)}
+  .pilllab{font-size:12px;color:var(--mut);text-align:center;text-transform:uppercase;letter-spacing:.1em}
+  .ar{font-size:34px;color:var(--mut)}
+
+  ul.road{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(max-width:760px){ul.road{grid-template-columns:1fr}}
+  ul.road li{background:var(--panel);border:1px solid var(--line);border-left:3px solid var(--accent);
+    border-radius:8px;padding:11px 14px;font-size:14.5px}
+  .road2 li{border-left-color:var(--good)}
+
+  .cta{text-align:center;padding:40px 0 56px}
+  .cta h2{font-size:22px;font-weight:800;margin-bottom:8px}
+  .cta p{color:var(--mut);font-size:15px}
+  footer{color:var(--mut);font-size:12.5px;text-align:center;padding:22px 0 40px}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="eyebrow">Digital Presence Audit</div>
+    <h1>Vale Gardeners</h1>
+    <div class="sub">Barry, Vale of Glamorgan, South Wales &nbsp;&middot;&nbsp; Website, Local SEO, Enquiry Capture, Reputation &amp; Recruitment Readiness</div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="hero">
+    <div class="gradecard">
+      <div class="eyebrow" style="position:relative">Overall Grade</div>
+      <div class="bigletter" style="color:var(--gradD)">D+</div>
+      <div class="score100">51 / 100</div>
+    </div>
+    <div class="heroread">
+      <h2>Your marketing works. Your hiring is invisible.</h2>
+      <p>Forty-four Google reviews rated Excellent, over a decade of work, and a full order book. The business is not short of customers, it is short of people. And there is nowhere on this website for a single one of them to apply. No careers page, no vacancies, no form. You are hiring in silence while your competitors advertise.</p>
+      <span class="tag">Strong reputation • Zero recruitment presence</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="h">The Scorecard &mdash; 12 Categories</div>
+    <div class="grid">
+
+      <div class="row"><div><div class="rname">Brand &amp; Domain</div><div class="bar"><div class="fill" style="width:78%;background:var(--gradB)"></div></div><div class="sc">Clean domain, consistent naming, clear local identity.</div></div><div class="badge gB">B</div></div>
+
+      <div class="row"><div><div class="rname">Website Design &amp; UX</div><div class="bar"><div class="fill" style="width:58%;background:var(--gradC)"></div></div><div class="sc">Tidy layout, but the same call-to-action repeats 24+ times.</div></div><div class="badge gC">C</div></div>
+
+      <div class="row"><div><div class="rname">Mobile Experience</div><div class="bar"><div class="fill" style="width:72%;background:var(--gradB)"></div></div><div class="sc">Responsive, though the repetition makes a very long scroll.</div></div><div class="badge gB">B</div></div>
+
+      <div class="row"><div><div class="rname">Site Speed &amp; Technical</div><div class="bar"><div class="fill" style="width:60%;background:var(--gradC)"></div></div><div class="sc">Repeated content bloats the page. No optimisation evident.</div></div><div class="badge gC">C</div></div>
+
+      <div class="row"><div><div class="rname">On-Page SEO</div><div class="bar"><div class="fill" style="width:45%;background:var(--gradD)"></div></div><div class="sc">Two dozen identical blocks reads as manipulation, not depth.</div></div><div class="badge gD">D</div></div>
+
+      <div class="row"><div><div class="rname">Local SEO &amp; Google Profile</div><div class="bar"><div class="fill" style="width:80%;background:var(--gradB)"></div></div><div class="sc">44 reviews rated Excellent. The strongest asset you own.</div></div><div class="badge gB">B</div></div>
+
+      <div class="row"><div><div class="rname">Enquiry Capture</div><div class="bar"><div class="fill" style="width:42%;background:var(--gradD)"></div></div><div class="sc">No form anywhere. Phone, text or WhatsApp only.</div></div><div class="badge gD">D</div></div>
+
+      <div class="row"><div><div class="rname">Speed to Lead &amp; Follow-Up</div><div class="bar"><div class="fill" style="width:40%;background:var(--gradD)"></div></div><div class="sc">No visible automation. A missed call is a lost job.</div></div><div class="badge gD">D</div></div>
+
+      <div class="row"><div><div class="rname">Content &amp; Authority</div><div class="bar"><div class="fill" style="width:25%;background:var(--gradF)"></div></div><div class="sc">No blog, guides or seasonal content earning organic reach.</div></div><div class="badge gF">F</div></div>
+
+      <div class="row"><div><div class="rname">Reviews &amp; Reputation</div><div class="bar"><div class="fill" style="width:88%;background:var(--gradA)"></div></div><div class="sc">44 reviews, recent, detailed and displayed. Genuinely strong.</div></div><div class="badge gA">A</div></div>
+
+      <div class="row"><div><div class="rname">Social Presence</div><div class="bar"><div class="fill" style="width:15%;background:var(--gradF)"></div></div><div class="sc">No social links anywhere on the site.</div></div><div class="badge gF">F</div></div>
+
+      <div class="row"><div><div class="rname">Recruitment Presence</div><div class="bar"><div class="fill" style="width:5%;background:var(--gradF)"></div></div><div class="sc">No careers page. No vacancies. No way to apply.</div></div><div class="badge gF">F</div></div>
+
+    </div>
+  </section>
+
+  <section>
+    <div class="h">The Opportunity in Numbers — Capacity, Not Leads</div>
+    <div class="opp">
+      <div class="ocard"><div class="lab">Conservative</div><div class="big">+£1,200/wk</div><div class="small">One qualified gardener added to the crew</div></div>
+      <div class="ocard"><div class="lab">Moderate</div><div class="big">+£2,400/wk</div><div class="small">Two hires, working at current job rates</div></div>
+      <div class="ocard"><div class="lab">Strong</div><div class="big">+£3,600/wk</div><div class="small">Three hires — the ceiling lifts, not the demand</div></div>
+    </div>
+    <p class="oppnote">Illustrative only, based on roughly 20 jobs a week at about £60 average. Your real numbers will differ and we should confirm them on the call. This is revenue, not profit, and it is not a guarantee. The point is the shape: you already have the demand. Every week without the right people is capacity you cannot sell.</p>
+  </section>
+
+  <section>
+    <div class="h">Projected Grade After Build</div>
+    <div class="arrow">
+      <div><div class="pill from" style="color:var(--gradD)">D+</div><div class="pilllab">Today &middot; 51/100</div></div>
+      <div class="ar">&rarr;</div>
+      <div><div class="pill to">A-</div><div class="pilllab">After build &middot; 88/100</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="h">Priority Roadmap &mdash; Fix First</div>
+    <ul class="road">
+      <li>Careers page with a real application form, not an email address</li>
+      <li>Recruitment ads aimed at local gardeners and landscapers</li>
+      <li>An enquiry form on the site, so the phone is not the only door</li>
+      <li>Strip the repeated call-to-action blocks before Google penalises them</li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="h">Build Next &mdash; Compounding</div>
+    <ul class="road road2">
+      <li>Automatic reply to applicants within minutes, not days</li>
+      <li>Google Business Profile posts and a photo cadence</li>
+      <li>Social presence that shows the work and attracts crew</li>
+      <li>Tracking, so you know which channel actually produces applicants</li>
+    </ul>
+  </section>
+
+  <div class="cta">
+    <h2>You do not need more leads. You need more hands.</h2>
+    <p>Same machine, pointed at a different problem.</p>
+  </div>
+
+  <footer>Prepared by Andrei Givero &mdash; AG Consulting &nbsp;|&nbsp; andrei170.github.io/ag1</footer>
+</div>
+</body>
+</html>
